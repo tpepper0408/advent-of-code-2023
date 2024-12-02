@@ -15,7 +15,8 @@ class Y2024D01 :Solution {
     }
 
     /**
-     * Parse input to two lists of integers where the left list and right list are returned in their original order.
+     * Parse input to two lists of integers where the left list and right list
+     * are returned in their original order.
      * The input comes in the form:
      * 3   4
      * 4   3
@@ -32,7 +33,8 @@ class Y2024D01 :Solution {
         .unzip()
 
     /**
-     * Calculate the sum of the differences between the two lists after sorting them into numerical order.
+     * Calculate the sum of the differences between the two lists after
+     * sorting them into numerical order.
      */
     private fun calculateSumOfDifferences(
         rightList: List<Int>,
@@ -49,7 +51,8 @@ class Y2024D01 :Solution {
     }
 
     /**
-     * For each element in the left list, calculate the product of the element and the number of times it appears in the right list.
+     * For each element in the left list, calculate the product of the element
+     * and the number of times it appears in the right list.
      */
     private fun calculateProductSum(
         leftList: List<Int>,

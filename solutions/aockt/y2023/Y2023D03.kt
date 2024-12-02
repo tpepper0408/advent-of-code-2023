@@ -53,7 +53,6 @@ class Y2023D03 :Solution {
                         }
 
                         if (symbology) {
-                            System.out.println("Found symbol: ${m.value} on line ${lineIndex + 1}")
                             retval.add(m.value.toInt())
                         }
                     }
