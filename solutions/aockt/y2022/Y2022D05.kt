@@ -7,7 +7,6 @@ class Y2022D05 : Solution {
     override fun partOne(input: String): Any {
         val (stacksRaw, instructionsRaw) = input.splitToSequence("\n\n").toList()
         val stacks = createInitialStacks(stacksRaw)
-        println(stacks)
         val instructions = instructionsRaw.split("\n")
         instructions.forEach { instruction ->
             val (from, to) = instruction.split(" from ")[1].split(" to ")
@@ -16,7 +15,6 @@ class Y2022D05 : Solution {
             repeat(instruction.split(" ")[1].toInt()) {
                 toStack.push(fromStack.pop())
             }
-            println(stacks)
         }
         return stacks.joinToString("") { stack -> stack.pop().toString() }
     }
@@ -39,7 +37,23 @@ class Y2022D05 : Solution {
     }
 
     override fun partTwo(input: String): Any {
-        return -1
-    }
+        val (stacksRaw, instructionsRaw) = input.splitToSequence("\n\n").toList()
+        val stacks = createInitialStacks(stacksRaw)
+        val instructions = instructionsRaw.split("\n")
+        instructions.forEach { instruction ->
+            val (from, to) = instruction.split(" from ")[1].split(" to ")
+            val fromStack = stacks[from.toInt() - 1]
+            val toStack = stacks[to.toInt() - 1]
+            val count = instruction.split(" ")[1].toInt()
 
+            val tempList = mutableListOf<Char>()
+            repeat(count) {
+                tempList.add(fromStack.pop())
+            }
+            repeat(count) {
+                toStack.push(tempList.removeLast())
+            }
+        }
+        return stacks.joinToString("") { stack -> stack.pop().toString() }
+    }
 }
