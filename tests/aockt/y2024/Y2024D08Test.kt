@@ -3,12 +3,44 @@ package aockt.y2024
 import io.github.jadarma.aockt.test.AdventDay
 import io.github.jadarma.aockt.test.AdventSpec
 
-@AdventDay(2024, 8, "Day 8: Title")
+@AdventDay(2024, 8, "Day 8: Resonant Collinearity")
 class Y2024D08Test : AdventSpec<Y2024D08>({
     partOne {
-        "input" shouldOutput 0
+                "............\n" +
+                "........0...\n" +
+                ".....0......\n" +
+                ".......0....\n" +
+                "....0.......\n" +
+                "......A.....\n" +
+                "............\n" +
+                "............\n" +
+                "........A...\n" +
+                ".........A..\n" +
+                "............\n" +
+                "............" shouldOutput 14
     }
     partTwo {
-        "input" shouldOutput 0
+        "T....#....\n" +
+                "...T......\n" +
+                ".T....#...\n" +
+                ".........#\n" +
+                "..#.......\n" +
+                "..........\n" +
+                "...#......\n" +
+                "..........\n" +
+                "....#.....\n" +
+                ".........." shouldOutput 9
+        "............\n" +
+                "........0...\n" +
+                ".....0......\n" +
+                ".......0....\n" +
+                "....0.......\n" +
+                "......A.....\n" +
+                "............\n" +
+                "............\n" +
+                "........A...\n" +
+                ".........A..\n" +
+                "............\n" +
+                "............" shouldOutput 34
     }
 })
