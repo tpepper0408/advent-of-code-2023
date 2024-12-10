@@ -49,23 +49,23 @@ class Y2024D08 : Solution {
                 }
             }
         }
-        printGrid(grid, resonantPoints)
+//        printGrid(grid, resonantPoints)
         return resonantPoints
     }
 
-    private fun printGrid(grid: List<String>, resonantPoints: MutableSet<Point>) {
-        for (y in grid.indices) {
-            for (x in grid[y].indices) {
-                val point = Point(x, y)
-                if (point in resonantPoints) {
-                    print('#')
-                } else {
-                    print(grid[y][x])
-                }
-            }
-            println()
-        }
-    }
+//    private fun printGrid(grid: List<String>, resonantPoints: MutableSet<Point>) {
+//        for (y in grid.indices) {
+//            for (x in grid[y].indices) {
+//                val point = Point(x, y)
+//                if (point in resonantPoints) {
+//                    print('#')
+//                } else {
+//                    print(grid[y][x])
+//                }
+//            }
+//            println()
+//        }
+//    }
 
     private data class Point(val x: Int, val y: Int)
 
