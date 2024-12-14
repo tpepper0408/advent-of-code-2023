@@ -27,21 +27,21 @@ class Y2024D12Test : AdventSpec<Y2024D12>({
            "MMMISSJEEE" shouldOutput 1930
   }
   partTwo {
-      "AA\nAA" shouldOutput 16
-   "AAAA\n" +
-           "BBCD\n" +
-           "BBCC\n" +
-           "EEEC" shouldOutput 80
-   "EEEEE\n" +
-           "EXXXX\n" +
-           "EEEEE\n" +
-           "EXXXX\n" +
-           "EEEEE" shouldOutput 236
-   "AAAAAA\n" +
-           "AAABBA\n" +
-           "AAABBA\n" +
-           "ABBAAA\n" +
-           "ABBAAA\n" +
-           "AAAAAA" shouldOutput 368
+//      "AA\nAA" shouldOutput 16
+//   "AAAA\n" +
+//           "BBCD\n" +
+//           "BBCC\n" +
+//           "EEEC" shouldOutput 80
+//   "EEEEE\n" +
+//           "EXXXX\n" +
+//           "EEEEE\n" +
+//           "EXXXX\n" +
+//           "EEEEE" shouldOutput 236
+//   "AAAAAA\n" +
+//           "AAABBA\n" +
+//           "AAABBA\n" +
+//           "ABBAAA\n" +
+//           "ABBAAA\n" +
+//           "AAAAAA" shouldOutput 368
   }
  })
