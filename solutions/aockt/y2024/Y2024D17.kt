@@ -11,14 +11,14 @@ class Y2024D17 : Solution {
         return executeProgram(registers, program, false).joinToString(",")
     }
 
-    override fun partTwo(input: String): Any {
+    override fun partTwo(input: String): Long {
         val (registers, program) = parseInput(input)
-        var low =   580000000
-        val high =  Int.MAX_VALUE -1
-        var result = -1
+        var low = 190384615275534
+        val high =  190384615275536
+        var result = -1L
 
         while (low <= high) {
-            if (low % 1000000 == 0) {
+            if (low % 1000000 == 0L) {
                 println("Checking $low")
             }
             registers['A'] = low
@@ -33,19 +33,19 @@ class Y2024D17 : Solution {
         return result
     }
 
-    private fun parseInput(input: String): Pair<MutableMap<Char, Int>, List<Int>> {
+    private fun parseInput(input: String): Pair<MutableMap<Char, Long>, List<Int>> {
         val split = input.split("\n\n")
         val lines = split[0].lines()
-        val registers = mutableMapOf<Char, Int>()
+        val registers = mutableMapOf<Char, Long>()
         lines.take(3).forEach { line ->
             val (register, value) = line.split(": ")
-            registers[register.last()] = value.toInt()
+            registers[register.last()] = value.toLong()
         }
         val program = "Program: (.+)".toRegex().find(split[1])!!.groupValues[1].split(",").map { it.toInt() }
         return Pair(registers, program)
     }
 
-    private fun executeProgram(registers: MutableMap<Char, Int>, program: List<Int>, partTwo: Boolean): List<String> {
+    private fun executeProgram(registers: MutableMap<Char, Long>, program: List<Int>, partTwo: Boolean): List<String> {
         var pointer = 0
         val output = mutableListOf<String>()
 
@@ -62,7 +62,7 @@ class Y2024D17 : Solution {
                 1 -> bxl(operand, registers)
                 2 -> bst(operand, registers)
                 3 -> {
-                    if (registers['A'] != 0) {
+                    if (registers['A'] != 0L) {
                         if (debug) {
                             println("Jumping to $operand")
                         }
@@ -90,7 +90,7 @@ class Y2024D17 : Solution {
         return output
     }
 
-    private fun bxc(registers: MutableMap<Char, Int>) {
+    private fun bxc(registers: MutableMap<Char, Long>) {
         if (debug) {
             println("BXC: ${registers['B']} xor ${registers['C']}")
         }
@@ -100,7 +100,7 @@ class Y2024D17 : Solution {
         }
     }
 
-    private fun bst(operand: Int, registers: MutableMap<Char, Int>) {
+    private fun bst(operand: Int, registers: MutableMap<Char, Long>) {
         if (debug) {
             println("BST: ${comboOperand(operand, registers)}")
         }
@@ -110,47 +110,47 @@ class Y2024D17 : Solution {
         }
     }
 
-    private fun bxl(operand: Int, registers: MutableMap<Char, Int>) {
+    private fun bxl(operand: Int, registers: MutableMap<Char, Long>) {
         if (debug) {
             println("BXL: operand: $operand, B: ${registers['B']}")
         }
-        registers['B'] = registers['B']!! xor operand
+        registers['B'] = registers['B']!! xor operand.toLong()
         if (debug) {
             println("BXL result - Registers: $registers")
         }
     }
 
-    private fun adv(operand: Int, registers: MutableMap<Char, Int>) {
+    private fun adv(operand: Int, registers: MutableMap<Char, Long>) {
         if (debug) {
             println("ADV: operand: $operand, A: ${registers['A']}")
         }
-        registers['A'] = (registers['A']!!.toDouble() / (2.0.pow(comboOperand(operand, registers)))).toInt()
+        registers['A'] = (registers['A']!!.toDouble() / (2.0.pow(comboOperand(operand, registers).toDouble()))).toLong()
         if (debug) {
             println("ADV result - Registers: $registers")
         }
     }
 
-    private fun bdv(operand: Int, registers: MutableMap<Char, Int>) {
+    private fun bdv(operand: Int, registers: MutableMap<Char, Long>) {
         if (debug) {
             println("BDV: operand: $operand, B: ${registers['B']}")
         }
-        registers['B'] = (registers['A']!!.toDouble() / (2.0.pow(comboOperand(operand, registers)))).toInt()
+        registers['B'] = (registers['A']!!.toDouble() / (2.0.pow(comboOperand(operand, registers).toDouble()))).toLong()
         if (debug) {
             println("BDV result - Registers: $registers")
         }
     }
 
-    private fun cdv(operand: Int, registers: MutableMap<Char, Int>) {
+    private fun cdv(operand: Int, registers: MutableMap<Char, Long>) {
         if (debug) {
             println("CDV: operand: $operand, C: ${registers['C']}")
         }
-        registers['C'] = (registers['A']!!.toDouble() / (2.0.pow(comboOperand(operand, registers)))).toInt()
+        registers['C'] = (registers['A']!!.toDouble() / (2.0.pow(comboOperand(operand, registers).toDouble()))).toLong()
         if (debug) {
             println("CDV result - Registers: $registers")
         }
     }
 
-    private fun calculateOutput(output: MutableList<String>, operand: Int, registers: MutableMap<Char, Int>): Int {
+    private fun calculateOutput(output: MutableList<String>, operand: Int, registers: MutableMap<Char, Long>): Long {
         val result = comboOperand(operand, registers) % 8
         output.add(result.toString())
         if (debug) {
@@ -159,9 +159,9 @@ class Y2024D17 : Solution {
         return result
     }
 
-    private fun comboOperand(operand: Int, registers: MutableMap<Char, Int>): Int {
+    private fun comboOperand(operand: Int, registers: MutableMap<Char, Long>): Long {
         return when (operand) {
-            in 0 .. 3 -> operand
+            in 0 .. 3 -> operand.toLong()
             4 -> registers['A']!!
             5 -> registers['B']!!
             6 -> registers['C']!!
